@@ -1,0 +1,36 @@
+name: release
+
+# Pushing a semver tag publishes the GitHub Release that `ddev add-on get` installs.
+# Example: git tag v1.2.3 && git push origin v1.2.3
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          if ! [[ "${tag}" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?$ ]]; then
+            echo "Tag '${tag}' must be SemVer: vX.Y.Z or vX.Y.Z-prerelease"
+            exit 1
+          fi
+
+          if gh release view "${tag}" --repo "${GITHUB_REPOSITORY}" >/dev/null 2>&1; then
+            echo "Release ${tag} already exists"
+            exit 0
+          fi
+
+          args=(--repo "${GITHUB_REPOSITORY}" --title "${tag}" --generate-notes)
+          if [[ "${tag}" == *-* ]]; then
+            args+=(--prerelease)
+          fi
+          gh release create "${tag}" "${args[@]}"

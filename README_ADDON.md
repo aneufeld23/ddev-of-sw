@@ -41,8 +41,11 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 ## Update
 
+`ddev add-on get aneufeld23/ddev-of-sw` installs the latest stable GitHub Release.
+
 ```bash
 ddev add-on get aneufeld23/ddev-of-sw
+ddev add-on get aneufeld23/ddev-of-sw --version v1.2.3
 ddev restart
 ```
 

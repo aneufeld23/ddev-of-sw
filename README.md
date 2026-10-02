@@ -20,14 +20,34 @@ Nach der Installation `.ddev/` ins Versionskontrollsystem committen.
 
 ## Update
 
-Um die Add-on-Dateien auf den neuesten Stand zu bringen:
+`ddev add-on get aneufeld23/ddev-of-sw` installiert das neueste stabile GitHub-Release, nicht den letzten Commit auf `main`.
 
 ```bash
 ddev add-on get aneufeld23/ddev-of-sw
 ddev restart
 ```
 
+Bestimmte Version:
+
+```bash
+ddev add-on get aneufeld23/ddev-of-sw --version v1.2.3
+ddev restart
+```
+
 Dateien mit `#ddev-generated` werden dabei ersetzt, solange sie nicht manuell geändert wurden.
+
+## Versionierung
+
+Versionen sind GitHub-Releases mit SemVer und `v`-Präfix, zum Beispiel `v1.2.3`. Ohne so ein Release kann DDEV `aneufeld23/ddev-of-sw` nicht auflösen.
+
+Release erzeugen: Tag auf dem gewünschten Commit setzen und pushen. Die Action `.github/workflows/release.yml` legt das GitHub-Release an.
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+Tags mit Suffix wie `v1.1.0-rc.1` werden als Pre-Release markiert. `ddev add-on get` ohne `--version` ignoriert sie. Installation dann mit `--version v1.1.0-rc.1`.
 
 ## Voraussetzungen
 
