@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# #ddev-generated
+bin/console cache:clear:all
