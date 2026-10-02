@@ -7,7 +7,7 @@ name: of-sw
 # if it hasn't been modified by the user.
 project_files:
   - .env.adminer
-  - config.watcher.yaml
+  - docker-compose.watch.yaml
   - mysql/my.cnf
   - php/shopware.ini
   - commands/.gitattributes
