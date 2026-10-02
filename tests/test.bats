@@ -44,6 +44,7 @@ health_checks() {
   assert_file_exist ".ddev/config.watcher.yaml"
   assert_file_exist ".ddev/mysql/my.cnf"
   assert_file_exist ".ddev/php/shopware.ini"
+  assert_file_exist ".ddev/commands/.gitattributes"
   assert_file_exist ".ddev/commands/web/sw"
   assert_file_exist ".ddev/commands/host/hip"
 
@@ -68,6 +69,13 @@ teardown() {
   else
     [ "${TESTDIR}" != "" ] && rm -rf "${TESTDIR}"
   fi
+}
+
+@test "release archive includes commands/.gitattributes" {
+  set -eu -o pipefail
+  cd "${DIR}"
+  run bash -c 'git archive HEAD | tar -t | grep -qx commands/.gitattributes'
+  assert_success
 }
 
 @test "install from directory" {

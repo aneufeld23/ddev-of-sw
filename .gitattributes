@@ -1,5 +1,6 @@
-# Exclude files from releases/tarballs
+# Exclude files from release tarballs (git archive / GitHub source downloads).
+# Use a leading slash on /.gitattributes so commands/.gitattributes stays in the archive.
 tests/ export-ignore
 .github/ export-ignore
-.gitattributes export-ignore
+/.gitattributes export-ignore
 .editorconfig export-ignore

@@ -8,12 +8,23 @@ Internes DDEV-Add-on für Shopware-Projekte. Stellt Watcher-Konfiguration, PHP- 
 
 ## Installation
 
+Use the `owner/repo` form to install the latest stable GitHub Release:
+
 ```bash
 ddev add-on get aneufeld23/ddev-of-sw
 ddev restart
 ```
 
-Für lokale Entwicklung:
+Do **not** pass the repository homepage URL (`https://github.com/aneufeld23/ddev-of-sw`). DDEV treats any `https://` argument as a tarball download; the homepage is HTML, which leads to `gzip: invalid header` when unpacking.
+
+To install a branch instead of a release, use a real archive URL:
+
+```bash
+ddev add-on get https://github.com/aneufeld23/ddev-of-sw/archive/refs/heads/main.tar.gz
+ddev restart
+```
+
+For local development:
 
 ```bash
 ddev add-on get /pfad/zu/ddev-of-sw
