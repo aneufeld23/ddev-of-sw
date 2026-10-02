@@ -67,7 +67,6 @@ Release-Tarballs nutzen `git archive`. In [`.gitattributes`](.gitattributes) dar
 | Datei | Zweck |
 | ----- | ----- |
 | `.env.adminer` | Adminer-Plugin-Konfiguration (Service kommt aus `ddev-adminer`) |
-| `docker-compose.watch.yaml` | Watcher-Ports und Web-Environment |
 | `mysql/my.cnf` | MySQL-`sql_mode` und `group_concat_max_len` |
 | `php/shopware.ini` | Shopware-PHP-Performance-Einstellungen (ohne `opcache.validate_timestamps = 0`) |
 | `commands/web/*` | Shopware- und Console-Shortcuts |

@@ -1,5 +1,0 @@
-services:
-  web:
-    ports:
-      # ImageProxy
-      - 9996:9996

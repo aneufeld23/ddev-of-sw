@@ -2,7 +2,7 @@
 
 ## Overview
 
-Internes DDEV-Add-on für Shopware-Projekte. Stellt Watcher-Konfiguration, PHP- und MySQL-Performance-Einstellungen, Custom Commands und die Adminer-Umgebungsdatei bereit. `shopware-cli` wird nicht mitgeliefert; sie ist in Shopware-DDEV-Projekten bereits enthalten.
+Internes DDEV-Add-on für Shopware-Projekte. Stellt PHP- und MySQL-Performance-Einstellungen, Custom Commands und die Adminer-Umgebungsdatei bereit. `shopware-cli` wird nicht mitgeliefert; sie ist in Shopware-DDEV-Projekten bereits enthalten.
 
 **Hinweis:** Der Adminer-Service selbst wird über das separate Add-on `ddev/ddev-adminer` bereitgestellt. Dieses Add-on liefert nur die `.env.adminer`-Konfiguration mit, damit sie nicht manuell angelegt werden muss.
 

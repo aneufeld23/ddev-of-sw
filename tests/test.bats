@@ -41,7 +41,6 @@ setup() {
 health_checks() {
   # Verify project files were installed
   assert_file_exist ".ddev/.env.adminer"
-  assert_file_exist ".ddev/docker-compose.watch.yaml"
   assert_file_exist ".ddev/mysql/my.cnf"
   assert_file_exist ".ddev/php/shopware.ini"
   assert_file_exist ".ddev/commands/.gitattributes"
