@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 # #ddev-generated
-shopware-cli project image-proxy --port 9996 --external-url "${DDEV_PRIMARY_URL}:9996" "$@"
+shopware-cli project image-proxy --clear --port 9996 --external-url "${DDEV_PRIMARY_URL}:9996" "$@"

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # #ddev-generated
 # Port 9996 on the host belongs to ddev-router. Run the proxy in the web container.
-exec ddev exec shopware-cli project image-proxy --port 9996 --external-url "${DDEV_PRIMARY_URL}:9996" "$@"
+exec ddev exec shopware-cli project image-proxy --clear --port 9996 --external-url "${DDEV_PRIMARY_URL}:9996" "$@"
