@@ -2,7 +2,7 @@
 
 ## Overview
 
-Internes DDEV-Add-on für Shopware-Projekte. Stellt PHP- und MySQL-Performance-Einstellungen, Custom Commands und die Adminer-Umgebungsdatei bereit. `shopware-cli` wird nicht mitgeliefert; sie ist in Shopware-DDEV-Projekten bereits enthalten.
+Internes DDEV-Add-on für Shopware-Projekte. Stellt die Watcher-Ports über den DDEV-Router, PHP- und MySQL-Performance-Einstellungen, Custom Commands und die Adminer-Umgebungsdatei bereit. `shopware-cli` wird nicht mitgeliefert; sie ist in Shopware-DDEV-Projekten bereits enthalten.
 
 **Hinweis:** Der Adminer-Service selbst wird über das separate Add-on `ddev/ddev-adminer` bereitgestellt. Dieses Add-on liefert nur die `.env.adminer`-Konfiguration mit, damit sie nicht manuell angelegt werden muss.
 
@@ -47,8 +47,19 @@ After installation, make sure to commit the `.ddev` directory to version control
 | `ddev bc` | `php bin/console` wrapper |
 | `ddev cc` | Clear cache |
 | `ddev cca` | Clear all caches |
-| `ddev ip` | Image proxy (web, port 9997) |
-| `ddev hip` | Image proxy (host, port 9997) |
+| `ddev ip` | Image proxy in the web container at `https://<project>.ddev.site:9996` |
+| `ddev hip` | Same as `ddev ip`; the proxy stays in the container so the router can own port 9996 |
+
+`config.watch.yaml` publishes the watcher ports through `ddev-router`. The router binds each host port once and selects the project by hostname, so several projects can keep the standard container ports:
+
+| Service | URL |
+| ------- | --- |
+| Administration watch | `https://<project>.ddev.site:5173` |
+| Storefront watch | `https://<project>.ddev.site:9998` |
+| Storefront assets | `https://<project>.ddev.site:9999` |
+| Image proxy | `https://<project>.ddev.site:9996` |
+
+Remove a project-local `.ddev/docker-compose.watch.yaml` that binds `5173`, `9998`, `9999`, or `9996` on the host. It conflicts with the router.
 
 ## Update
 

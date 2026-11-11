@@ -7,6 +7,7 @@ name: of-sw
 # if it hasn't been modified by the user.
 project_files:
   - .env.adminer
+  - config.watch.yaml
   - mysql/my.cnf
   - php/shopware.ini
   - commands/.gitattributes
@@ -31,3 +32,15 @@ post_install_actions:
   - |
     #ddev-description:Make custom commands executable
     chmod +x commands/web/* commands/host/* 2>/dev/null || true
+  - |
+    #ddev-description:Warn when watcher ports are still bound on the host
+    watch_file=""
+    if [ -f .ddev/docker-compose.watch.yaml ]; then
+      watch_file=".ddev/docker-compose.watch.yaml"
+    elif [ -f docker-compose.watch.yaml ]; then
+      watch_file="docker-compose.watch.yaml"
+    fi
+    if [ -n "${watch_file}" ] && grep -Eq '9998:9998|5173:5173|9996:9996' "${watch_file}"; then
+      echo "Hinweis: ${watch_file} bindet Watcher-Ports direkt auf dem Host."
+      echo "Diese Datei entfernen, sonst kollidiert sie mit den Ports aus config.watch.yaml."
+    fi

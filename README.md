@@ -67,6 +67,7 @@ Release-Tarballs nutzen `git archive`. In [`.gitattributes`](.gitattributes) dar
 | Datei | Zweck |
 | ----- | ----- |
 | `.env.adminer` | Adminer-Plugin-Konfiguration (Service kommt aus `ddev-adminer`) |
+| `config.watch.yaml` | Watcher- und Image-Proxy-Ports über den DDEV-Router |
 | `mysql/my.cnf` | MySQL-`sql_mode` und `group_concat_max_len` |
 | `php/shopware.ini` | Shopware-PHP-Performance-Einstellungen (ohne `opcache.validate_timestamps = 0`) |
 | `commands/web/*` | Shopware- und Console-Shortcuts |
@@ -86,8 +87,19 @@ Release-Tarballs nutzen `git archive`. In [`.gitattributes`](.gitattributes) dar
 | `ddev bc` | `php bin/console` Wrapper |
 | `ddev cc` | Cache leeren |
 | `ddev cca` | Alle Caches leeren |
-| `ddev ip` | Image-Proxy (Web, Port 9997) |
-| `ddev hip` | Image-Proxy (Host, Port 9997) |
+| `ddev ip` | Image-Proxy im Container, öffentlich über `https://<projekt>.ddev.site:9996` |
+| `ddev hip` | Wie `ddev ip`; der Proxy läuft im Container, damit Port 9996 frei für den Router bleibt |
+
+`config.watch.yaml` veröffentlicht die Ports über `ddev-router`. Der Router belegt jeden Host-Port nur einmal und wählt das Projekt über den Hostnamen, deshalb können mehrere Projekte dieselben Container-Ports nutzen. Aufgerufen wird weiter über HTTPS:
+
+| Dienst | URL |
+| ------ | --- |
+| Administration-Watch | `https://<projekt>.ddev.site:5173` |
+| Storefront-Watch | `https://<projekt>.ddev.site:9998` |
+| Storefront-Assets | `https://<projekt>.ddev.site:9999` |
+| Image-Proxy | `https://<projekt>.ddev.site:9996` |
+
+Liegt im Projekt noch eine `.ddev/docker-compose.watch.yaml`, die `5173`, `9998`, `9999` oder `9996` direkt auf den Host bindet, muss sie weg. Sonst kollidiert sie mit dem Router.
 
 ## Entwicklung
 

@@ -41,6 +41,7 @@ setup() {
 health_checks() {
   # Verify project files were installed
   assert_file_exist ".ddev/.env.adminer"
+  assert_file_exist ".ddev/config.watch.yaml"
   assert_file_exist ".ddev/mysql/my.cnf"
   assert_file_exist ".ddev/php/shopware.ini"
   assert_file_exist ".ddev/commands/.gitattributes"
@@ -49,6 +50,10 @@ health_checks() {
 
   # Verify #ddev-generated marker in .env.adminer
   run grep -q '#ddev-generated' .ddev/.env.adminer
+  assert_success
+  run grep -q 'STOREFRONT_SKIP_SSL_CERT=true' .ddev/config.watch.yaml
+  assert_success
+  run grep -q 'external-url' .ddev/commands/web/ip
   assert_success
 
   # Verify custom commands are present
