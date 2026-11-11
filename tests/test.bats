@@ -53,6 +53,8 @@ health_checks() {
   assert_success
   run grep -q 'STOREFRONT_SKIP_SSL_CERT=true' .ddev/config.watch.yaml
   assert_success
+  run grep -q 'https_port: 9997' .ddev/config.watch.yaml
+  assert_success
   run grep -q 'external-url' .ddev/commands/web/ip
   assert_success
 

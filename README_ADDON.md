@@ -54,12 +54,13 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 | Service | URL |
 | ------- | --- |
-| Administration watch | `https://<project>.ddev.site:5173` |
+| Administration watch (Shopware 6.7) | `https://<project>.ddev.site:5173` |
+| Administration watch (Shopware 6.6) | `https://<project>.ddev.site:9997` |
 | Storefront watch | `https://<project>.ddev.site:9998` |
 | Storefront assets | `https://<project>.ddev.site:9999` |
 | Image proxy | `https://<project>.ddev.site:9996` |
 
-Remove a project-local `.ddev/docker-compose.watch.yaml` that binds `5173`, `9998`, `9999`, or `9996` on the host. It conflicts with the router.
+Remove a project-local `.ddev/docker-compose.watch.yaml` that binds `5173`, `9997`, `9998`, `9999`, or `9996` on the host. It conflicts with the router.
 
 ## Update
 

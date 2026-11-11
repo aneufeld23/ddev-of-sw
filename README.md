@@ -94,12 +94,13 @@ Release-Tarballs nutzen `git archive`. In [`.gitattributes`](.gitattributes) dar
 
 | Dienst | URL |
 | ------ | --- |
-| Administration-Watch | `https://<projekt>.ddev.site:5173` |
+| Administration-Watch (Shopware 6.7) | `https://<projekt>.ddev.site:5173` |
+| Administration-Watch (Shopware 6.6) | `https://<projekt>.ddev.site:9997` |
 | Storefront-Watch | `https://<projekt>.ddev.site:9998` |
 | Storefront-Assets | `https://<projekt>.ddev.site:9999` |
 | Image-Proxy | `https://<projekt>.ddev.site:9996` |
 
-Liegt im Projekt noch eine `.ddev/docker-compose.watch.yaml`, die `5173`, `9998`, `9999` oder `9996` direkt auf den Host bindet, muss sie weg. Sonst kollidiert sie mit dem Router.
+Liegt im Projekt noch eine `.ddev/docker-compose.watch.yaml`, die `5173`, `9997`, `9998`, `9999` oder `9996` direkt auf den Host bindet, muss sie weg. Sonst kollidiert sie mit dem Router.
 
 ## Entwicklung
 
